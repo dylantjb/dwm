@@ -1,10 +1,15 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static unsigned int borderpx  = 2;        /* border pixel of windows */
-static unsigned int snap      = 16;       /* snap pixel */
-static int showbar            = 1;        /* 0 means no bar */
-static int topbar             = 1;        /* 0 means bottom bar */
+static unsigned int borderpx  = 2;
+static unsigned int snap      = 16;
+static int showbar            = 1;
+static int topbar             = 1;
+static int smartgaps          = 0;
+static const unsigned int gappih = 8;
+static const unsigned int gappiv = 8;
+static const unsigned int gappoh = 6;
+static const unsigned int gappov = 6;
 static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
@@ -12,20 +17,15 @@ static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
-static char *colors[][3] = {
-       /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
-};
 
-static char termcol0[] = "#000000"; /* black   */
-static char termcol1[] = "#ff0000"; /* red     */
-static char termcol2[] = "#33ff00"; /* green   */
-static char termcol3[] = "#ff0099"; /* yellow  */
-static char termcol4[] = "#0066ff"; /* blue    */
-static char termcol5[] = "#cc00ff"; /* magenta */
-static char termcol6[] = "#00ffff"; /* cyan    */
-static char termcol7[] = "#d0d0d0"; /* white   */
+static char termcol0[]  = "#000000"; /* black   */
+static char termcol1[]  = "#ff0000"; /* red     */
+static char termcol2[]  = "#33ff00"; /* green   */
+static char termcol3[]  = "#ff0099"; /* yellow  */
+static char termcol4[]  = "#0066ff"; /* blue    */
+static char termcol5[]  = "#cc00ff"; /* magenta */
+static char termcol6[]  = "#00ffff"; /* cyan    */
+static char termcol7[]  = "#d0d0d0"; /* white   */
 static char termcol8[]  = "#808080"; /* black   */
 static char termcol9[]  = "#ff0000"; /* red     */
 static char termcol10[] = "#33ff00"; /* green   */
@@ -34,6 +34,13 @@ static char termcol12[] = "#0066ff"; /* blue    */
 static char termcol13[] = "#cc00ff"; /* magenta */
 static char termcol14[] = "#00ffff"; /* cyan    */
 static char termcol15[] = "#ffffff"; /* white   */
+
+static char *colors[][3] = {
+       /*               fg           bg           border   */
+       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+};
+
 static char *termcolor[] = {
   termcol0,
   termcol1,
@@ -72,11 +79,26 @@ static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+#define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
+#include "vanitygaps.c"
+
 static const Layout layouts[] = {
-  /* symbol     arrange function */
-  { "[]=",      tile },    /* first entry is default */
-  { "><>",      NULL },    /* no layout function means floating behavior */
-  { "[M]",      monocle },
+	/* symbol     arrange function */
+	{ "[]=",      tile },    /* first entry is default */
+	{ "[M]",      monocle },
+	{ "[@]",      spiral },
+	{ "[\\]",     dwindle },
+	{ "H[]",      deck },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
+	{ "HHH",      grid },
+	{ "###",      nrowgrid },
+	{ "---",      horizgrid },
+	{ ":::",      gaplessgrid },
+	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
+	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ NULL,       NULL },
 };
 
 /* key definitions */
@@ -139,6 +161,29 @@ static Key keys[] = {
   { MODKEY,                       XK_period, focusmon,       {.i = +1 } },
   { MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
   { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+  { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+
+  /* gaps */
+  { MODKEY,                       XK_z,      incrgaps,       {.i = +3} },
+  { MODKEY,                       XK_x,      incrgaps,       {.i = -3} },
+	{ MODKEY,                       XK_a,      togglegaps,     {0} },
+	{ MODKEY|ShiftMask,             XK_a,      defaultgaps,    {0} },
+
+    /* { MODKEY|Mod4Mask,              XK_l,      incrgaps,       {.i = -1 } }, */
+    /* { MODKEY|Mod4Mask|ShiftMask,    XK_h,      incrogaps,      {.i = +1 } }, */
+    /* { MODKEY|Mod4Mask|ShiftMask,    XK_l,      incrogaps,      {.i = -1 } }, */
+    /* { MODKEY|Mod4Mask|ControlMask,  XK_h,      incrigaps,      {.i = +1 } }, */
+    /* { MODKEY|Mod4Mask|ControlMask,  XK_l,      incrigaps,      {.i = -1 } }, */
+    /* { MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} }, */
+    /* { MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } }, */
+    /* { MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } }, */
+    /* { MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } }, */
+    /* { MODKEY|ControlMask,           XK_o,      incrivgaps,     {.i = -1 } }, */
+    /* { MODKEY|Mod4Mask,              XK_y,      incrohgaps,     {.i = +1 } }, */
+    /* { MODKEY|Mod4Mask,              XK_o,      incrohgaps,     {.i = -1 } }, */
+    /* { MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } }, */
+    /* { MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } }, */
+
   TAGKEYS(                        XK_1,                      0)
   TAGKEYS(                        XK_2,                      1)
   TAGKEYS(                        XK_3,                      2)
@@ -148,7 +193,6 @@ static Key keys[] = {
   TAGKEYS(                        XK_7,                      6)
   TAGKEYS(                        XK_8,                      7)
   TAGKEYS(                        XK_9,                      8)
-  { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
 /* button definitions */
