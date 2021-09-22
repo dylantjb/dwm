@@ -6,39 +6,39 @@ static unsigned int snap      = 16;
 static int showbar            = 1;
 static int topbar             = 1;
 static int smartgaps          = 0;
-static const unsigned int gappih = 8;
-static const unsigned int gappiv = 8;
-static const unsigned int gappoh = 6;
-static const unsigned int gappov = 6;
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#444444";
-static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
-static char selbordercolor[]        = "#005577";
-static char selbgcolor[]            = "#005577";
+static unsigned int gappih = 8;
+static unsigned int gappiv = 8;
+static unsigned int gappoh = 6;
+static unsigned int gappov = 6;
+static const char *fonts[]    = { "JetBrainsMono Nerd Font:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true" };
+static char normbgcolor[]     = "#222222";
+static char normbordercolor[] = "#444444";
+static char normfgcolor[]     = "#bbbbbb";
+static char selfgcolor[]      = "#eeeeee";
+static char selbordercolor[]  = "#005577";
+static char selbgcolor[]      = "#005577";
 
-static char termcol0[]  = "#000000"; /* black   */
-static char termcol1[]  = "#ff0000"; /* red     */
-static char termcol2[]  = "#33ff00"; /* green   */
-static char termcol3[]  = "#ff0099"; /* yellow  */
-static char termcol4[]  = "#0066ff"; /* blue    */
-static char termcol5[]  = "#cc00ff"; /* magenta */
-static char termcol6[]  = "#00ffff"; /* cyan    */
-static char termcol7[]  = "#d0d0d0"; /* white   */
-static char termcol8[]  = "#808080"; /* black   */
-static char termcol9[]  = "#ff0000"; /* red     */
-static char termcol10[] = "#33ff00"; /* green   */
-static char termcol11[] = "#ff0099"; /* yellow  */
-static char termcol12[] = "#0066ff"; /* blue    */
-static char termcol13[] = "#cc00ff"; /* magenta */
-static char termcol14[] = "#00ffff"; /* cyan    */
-static char termcol15[] = "#ffffff"; /* white   */
+static char termcol0[]  = "#000000";
+static char termcol1[]  = "#ff0000";
+static char termcol2[]  = "#33ff00";
+static char termcol3[]  = "#ff0099";
+static char termcol4[]  = "#0066ff";
+static char termcol5[]  = "#cc00ff";
+static char termcol6[]  = "#00ffff";
+static char termcol7[]  = "#d0d0d0";
+static char termcol8[]  = "#808080";
+static char termcol9[]  = "#ff0000";
+static char termcol10[] = "#33ff00";
+static char termcol11[] = "#ff0099";
+static char termcol12[] = "#0066ff";
+static char termcol13[] = "#cc00ff";
+static char termcol14[] = "#00ffff";
+static char termcol15[] = "#ffffff";
 
 static char *colors[][3] = {
-       /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+  /*               fg           bg           border   */
+  [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+  [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 static char *termcolor[] = {
@@ -122,19 +122,19 @@ static const char *termcmd[]  = { "st", NULL };
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-    { "color0",          STRING,  &normbordercolor },
-    { "color9",          STRING,  &selbordercolor },
-    { "color0",          STRING,  &normbgcolor },
-    { "color4",          STRING,  &normfgcolor },
-    { "color0",          STRING,  &selfgcolor },
-    { "color4",          STRING,  &selbgcolor },
-    { "borderpx",        INTEGER, &borderpx },
-    { "snap",            INTEGER, &snap },
-    { "showbar",         INTEGER, &showbar },
-    { "topbar",          INTEGER, &topbar },
-    { "nmaster",         INTEGER, &nmaster },
-    { "resizehints",     INTEGER, &resizehints },
-    { "mfact",           FLOAT,   &mfact },
+  { "color4",  STRING, &normfgcolor },
+  { "color0",  STRING, &normbgcolor },
+  { "color0",  STRING, &normbordercolor },
+  { "color0",  STRING, &selfgcolor },
+  { "color4",  STRING, &selbgcolor },
+  { "color9",  STRING, &selbordercolor },
+  { "color1",  STRING, &termcol1 },
+  { "color2",  STRING, &termcol2 },
+  { "color3",  STRING, &termcol3 },
+  { "color4",  STRING, &termcol4 },
+  { "color5",  STRING, &termcol5 },
+  { "color6",  STRING, &termcol6 },
+  { "color7",  STRING, &termcol7 },
 };
 
 static Key keys[] = {
