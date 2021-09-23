@@ -135,6 +135,7 @@ static const char *powercmd[]    = { "rofi", "-show", "p", "-modi", "p:rofi-powe
 static const char *rotatewal[]   = { "wallpaper", NULL };
 static const char *lfcmd[]       = { TERMINAL, "-e", "lf", NULL };
 static const char *newsboat[]    = { TERMINAL, "-e", "newsboat", NULL };
+static const char *neomutt[]     = { TERMINAL, "-e", "neomutt", NULL };
 static const char *mu4e[]        = { "sh", "-c", "em -ce '(mu4e)'", NULL };
 static const char *skippy[]      = { "skippy-xd", NULL };
 static const char *dunsthist[]   = { "dunstctl", "history-pop", NULL };
@@ -171,26 +172,25 @@ static const char *printscreen[] = { "printscr", NULL };
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-  { "color4",  STRING, &normfgcolor },
-  { "color0",  STRING, &normbgcolor },
-  { "color0",  STRING, &normbordercolor },
-  { "color0",  STRING, &selfgcolor },
-  { "color4",  STRING, &selbgcolor },
-  { "color9",  STRING, &selbordercolor },
-  { "color1",  STRING, &termcol1 },
-  { "color2",  STRING, &termcol2 },
-  { "color3",  STRING, &termcol3 },
-  { "color4",  STRING, &termcol4 },
-  { "color5",  STRING, &termcol5 },
-  { "color6",  STRING, &termcol6 },
-  { "color7",  STRING, &termcol7 },
+  { "color4", STRING, &normfgcolor },
+  { "color0", STRING, &normbgcolor },
+  { "color0", STRING, &normbordercolor },
+  { "color0", STRING, &selfgcolor },
+  { "color4", STRING, &selbgcolor },
+  { "color9", STRING, &selbordercolor },
+  { "color1", STRING, &termcol1 },
+  { "color2", STRING, &termcol2 },
+  { "color3", STRING, &termcol3 },
+  { "color4", STRING, &termcol4 },
+  { "color5", STRING, &termcol5 },
+  { "color6", STRING, &termcol6 },
+  { "color7", STRING, &termcol7 },
 };
 
 #include <X11/XF86keysym.h>
 #include "shiftview.c"
 static Key keys[] = {
   /* modifier         key           function        argument */
-
   { MODKEY,           XK_0,          view,            {.ui = ~0 } },
   { MODKEY|ShiftMask, XK_0,          tag,             {.ui = ~0 } },
   { MODKEY,           XK_Tab,        view,            {0} },
@@ -250,6 +250,7 @@ static Key keys[] = {
   { MODKEY,           XK_p,          spawn,           {.v = keepmenu} },
   { MODKEY,           XK_BackSpace,  spawn,           {.v = skippy} },
   { MODKEY,           XK_b,          spawn,           {.v = newsboat} },
+  { MODKEY,           XK_e,          spawn,           {.v = neomutt} },
   { MODKEY|ShiftMask, XK_e,          spawn,           {.v = mu4e} },
   { MODKEY,           XK_w,          spawn,           {.v = browsercmd} },
   { MODKEY|ShiftMask, XK_w,          spawn,           {.v = rotatewal} },
