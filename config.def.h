@@ -83,7 +83,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static float mfact     = 0.55;
 static int nmaster     = 1;
-static int resizehints = 1;
+static int resizehints = 0;
 static const int lockfullscreen = 1;
 
 #include "vanitygaps.c"
