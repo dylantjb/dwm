@@ -146,7 +146,8 @@ static const char *dunsthist[]   = { "dunstctl", "history-pop", NULL };
 static const char *dunstclose[]  = { "dunstctl", "close-all", NULL };
 static const char *notifyctl[]   = { "notifyctl", "toggle", NULL };
 static const char *ncmpcpp[]     = { TERMINAL, "-e", "ncmpcpp", NULL };
-static const char *keepmenu[]    = { "keepmenu", NULL };
+static const char *keepass[]     = { "keepmenu", "-d", "1", NULL };
+static const char *keepotp[]     = { "keepmenu", "-d", "2", NULL };
 
 static const char *volup[]       = { "volume", "up", NULL };
 static const char *mpcup[]       = { "mpc", "volume", "+5", NULL };
@@ -249,7 +250,8 @@ static Key keys[] = {
 
   /* custom keybindings */
   { MODKEY,           XK_r,          spawn,           {.v = lfcmd} },
-  { MODKEY,           XK_p,          spawn,           {.v = keepmenu} },
+  { MODKEY,           XK_p,          spawn,           {.v = keepass} },
+  { MODKEY|ShiftMask, XK_p,          spawn,           {.v = keepotp} },
   { MODKEY,           XK_BackSpace,  spawn,           {.v = skippy} },
   { MODKEY,           XK_b,          spawn,           {.v = newsboat} },
   { MODKEY,           XK_e,          spawn,           {.v = neomutt} },
