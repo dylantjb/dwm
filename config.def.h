@@ -89,35 +89,35 @@ static const int lockfullscreen = 1;
 #include "vanitygaps.c"
 
 static const Layout layouts[] = {
-	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "[M]",      monocle },
-	{ "[@]",      spiral },
-	{ "[\\]",     dwindle },
-	{ "H[]",      deck },
-	{ "TTT",      bstack },
-	{ "===",      bstackhoriz },
-	{ "HHH",      grid },
-	{ "###",      nrowgrid },
-	{ "---",      horizgrid },
-	{ ":::",      gaplessgrid },
-	{ "|M|",      centeredmaster },
-	{ ">M>",      centeredfloatingmaster },
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ NULL,       NULL },
+  /* symbol     arrange function */
+  { "[]=",      tile },    /* first entry is default */
+  { "[M]",      monocle },
+  { "[@]",      spiral },
+  { "[\\]",     dwindle },
+  { "H[]",      deck },
+  { "TTT",      bstack },
+  { "===",      bstackhoriz },
+  { "HHH",      grid },
+  { "###",      nrowgrid },
+  { "---",      horizgrid },
+  { ":::",      gaplessgrid },
+  { "|M|",      centeredmaster },
+  { ">M>",      centeredfloatingmaster },
+  { "><>",      NULL },    /* no layout function means floating behavior */
+  { NULL,       NULL },
 };
 
 /* key definitions */
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+  { MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+  { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+  { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+  { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 #define STACKKEYS(MOD,ACTION) \
-	{ MOD, XK_j,     ACTION##stack, {.i = INC(+1) } }, \
-	{ MOD, XK_k,     ACTION##stack, {.i = INC(-1) } }, \
-	{ MOD, XK_v,     ACTION##stack, {.i = 0 } },
+  { MOD, XK_j,     ACTION##stack, {.i = INC(+1) } }, \
+  { MOD, XK_k,     ACTION##stack, {.i = INC(-1) } }, \
+  { MOD, XK_v,     ACTION##stack, {.i = 0 } },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -139,7 +139,6 @@ static const char *powercmd[]    = { "rofi", "-show", "p", "-modi", "p:rofi-powe
 static const char *rotatewal[]   = { "wallpaper", NULL };
 static const char *lfcmd[]       = { TERMINAL, "-e", "lf", NULL };
 static const char *newsboat[]    = { TERMINAL, "-e", "newsboat", NULL };
-static const char *neomutt[]     = { TERMINAL, "-e", "neomutt", NULL };
 static const char *mu4e[]        = { "sh", "-c", "em -ce '(mu4e)'", NULL };
 static const char *skippy[]      = { "sh", "-c", "sleep 0.2; skippy-xd", NULL };
 static const char *dunsthist[]   = { "dunstctl", "history-pop", NULL };
@@ -254,8 +253,7 @@ static Key keys[] = {
   { MODKEY|ShiftMask, XK_p,          spawn,           {.v = keepotp} },
   { MODKEY,           XK_BackSpace,  spawn,           {.v = skippy} },
   { MODKEY,           XK_b,          spawn,           {.v = newsboat} },
-  { MODKEY,           XK_e,          spawn,           {.v = neomutt} },
-  { MODKEY|ShiftMask, XK_e,          spawn,           {.v = mu4e} },
+  { MODKEY,           XK_e,          spawn,           {.v = mu4e} },
   { MODKEY,           XK_w,          spawn,           {.v = browsercmd} },
   { MODKEY|ShiftMask, XK_w,          spawn,           {.v = rotatewal} },
   { MODKEY,           XK_m,          spawn,           {.v = dmenumount} },
@@ -304,8 +302,8 @@ static Key keys[] = {
   TAGKEYS(                        XK_7,                      6)
   TAGKEYS(                        XK_8,                      7)
   TAGKEYS(                        XK_9,                      8)
-	STACKKEYS(MODKEY,                          focus)
-	STACKKEYS(MODKEY|ShiftMask,                push)
+  STACKKEYS(MODKEY,                          focus)
+  STACKKEYS(MODKEY|ShiftMask,                push)
 };
 
 /* button definitions */
