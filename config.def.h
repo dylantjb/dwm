@@ -145,8 +145,10 @@ static const char *dunsthist[]   = { "dunstctl", "history-pop", NULL };
 static const char *dunstclose[]  = { "dunstctl", "close-all", NULL };
 static const char *notifyctl[]   = { "notifyctl", "toggle", NULL };
 static const char *ncmpcpp[]     = { TERMINAL, "-e", "ncmpcpp", NULL };
-static const char *keepass[]     = { "keepmenu", "-d", "1", NULL };
-static const char *keepotp[]     = { "keepmenu", "-d", "2", NULL };
+static const char *keepass[]     = { "sh", "-c", "keepmenu -d ~/.local/share/keepassxc/passwords.kdbx -k "
+                                                 "~/.local/share/keepassxc/passwords -a {PASSWORD}{ENTER}", NULL };
+static const char *keepotp[]     = { "sh", "-c", "keepmenu -d ~/.local/share/keepassxc/codes.kdbx -k "
+                                                 "~/.local/share/keepassxc/codes -a {TOTP}{ENTER}", NULL };
 
 static const char *volup[]       = { "volume", "up", NULL };
 static const char *mpcup[]       = { "mpc", "volume", "+5", NULL };
