@@ -67,6 +67,9 @@ static char *termcolor[] = {
   termcol15,
 };
 
+static const char scratchpadname[] = "St";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const Rule rules[] = {
@@ -201,6 +204,7 @@ static Key keys[] = {
   { MODKEY|ShiftMask, XK_0,          tag,             {.ui = ~0 } },
   { MODKEY,           XK_Tab,        view,            {0} },
   { MODKEY,           XK_q,          killclient,      {0} },
+  { MODKEY|ShiftMask, XK_Return,     togglescratch,   {.v = scratchpadcmd} },
   { MODKEY,           XK_t,          setlayout,       {.v = &layouts[0]} },
   { MODKEY|ShiftMask, XK_t,          setlayout,       {.v = &layouts[1]} },
   { MODKEY,           XK_y,          setlayout,       {.v = &layouts[2]} },
