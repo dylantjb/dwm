@@ -2,6 +2,7 @@
 
 /* constants */
 #define TERMINAL "st"
+#define TERMCLASS "St"
 #define FORCE_VSPLIT 1
 
 /* appearance */
@@ -67,8 +68,8 @@ static char *termcolor[] = {
   termcol15,
 };
 
-static const char scratchpadname[] = "St";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+static const char scratchpadname[] = TERMCLASS;
+static const char *scratchpadcmd[] = { TERMINAL, "-t", scratchpadname, "-g", "120x34", NULL };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -78,7 +79,7 @@ static const Rule rules[] = {
    *  WM_NAME(STRING) = title
    */
   /* class      instance    title       tags mask     isfloating   monitor */
-  { "St",       NULL,       NULL,           0,            0,         -1 },
+  { TERMCLASS,  NULL,       NULL,           0,            0,         -1 },
   { NULL,       NULL,       "Event Tester", 0,            0,         -1 },
   { NULL,       NULL,       "SafeEyes-0",   0,            1,         -1 },
 };
