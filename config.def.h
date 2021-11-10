@@ -26,46 +26,10 @@ static char selfgcolor[]      = "#eeeeee";
 static char selbordercolor[]  = "#005577";
 static char selbgcolor[]      = "#005577";
 
-static char termcol0[]  = "#000000";
-static char termcol1[]  = "#ff0000";
-static char termcol2[]  = "#33ff00";
-static char termcol3[]  = "#ff0099";
-static char termcol4[]  = "#0066ff";
-static char termcol5[]  = "#cc00ff";
-static char termcol6[]  = "#00ffff";
-static char termcol7[]  = "#d0d0d0";
-static char termcol8[]  = "#808080";
-static char termcol9[]  = "#ff0000";
-static char termcol10[] = "#33ff00";
-static char termcol11[] = "#ff0099";
-static char termcol12[] = "#0066ff";
-static char termcol13[] = "#cc00ff";
-static char termcol14[] = "#00ffff";
-static char termcol15[] = "#ffffff";
-
 static char *colors[][3] = {
   /*               fg           bg           border   */
   [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
   [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
-};
-
-static char *termcolor[] = {
-  termcol0,
-  termcol1,
-  termcol2,
-  termcol3,
-  termcol4,
-  termcol5,
-  termcol6,
-  termcol7,
-  termcol8,
-  termcol9,
-  termcol10,
-  termcol11,
-  termcol12,
-  termcol13,
-  termcol14,
-  termcol15,
 };
 
 static const char scratchpadname[] = TERMCLASS;
@@ -182,19 +146,19 @@ static const char *printscreen[] = { "printscr", NULL };
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-  { "color4", STRING, &normfgcolor },
-  { "color0", STRING, &normbgcolor },
-  { "color0", STRING, &normbordercolor },
-  { "color0", STRING, &selfgcolor },
-  { "color4", STRING, &selbgcolor },
-  { "color9", STRING, &selbordercolor },
-  { "color1", STRING, &termcol1 },
-  { "color2", STRING, &termcol2 },
-  { "color3", STRING, &termcol3 },
-  { "color4", STRING, &termcol4 },
-  { "color5", STRING, &termcol5 },
-  { "color6", STRING, &termcol6 },
-  { "color7", STRING, &termcol7 },
+    { "color0",          STRING,  &normbordercolor },
+    { "color9",          STRING,  &selbordercolor },
+    { "color0",          STRING,  &normbgcolor },
+    { "color9",          STRING,  &normfgcolor },
+    { "color0",          STRING,  &selfgcolor },
+    { "color9",          STRING,  &selbgcolor },
+    { "borderpx",        INTEGER, &borderpx },
+    { "snap",            INTEGER, &snap },
+    { "showbar",         INTEGER, &showbar },
+    { "topbar",          INTEGER, &topbar },
+    { "nmaster",         INTEGER, &nmaster },
+    { "resizehints",     INTEGER, &resizehints },
+    { "mfact",           FLOAT,   &mfact },
 };
 
 #include <X11/XF86keysym.h>
@@ -316,17 +280,17 @@ static Key keys[] = {
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
-  /* click                event mask      button          function        argument */
-  { ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-  { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-  { ClkWinTitle,          0,              Button2,        zoom,           {0} },
-  { ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
-  { ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-  { ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-  { ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-  { ClkTagBar,            0,              Button1,        view,           {0} },
-  { ClkTagBar,            0,              Button3,        toggleview,     {0} },
-  { ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-  { ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+	/* click                event mask      button          function        argument */
+	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
+	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
+	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
+	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkTagBar,            0,              Button1,        view,           {0} },
+	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
+	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
+	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
