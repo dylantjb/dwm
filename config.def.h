@@ -47,6 +47,7 @@ static char *colors[][3] = {
   /*               fg           bg           border   */
   [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
   [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+  [SchemeTitle] = { termcol7, selfgcolor, selbordercolor   },
 };
 
 static char *termcolor[] = {
@@ -193,6 +194,7 @@ ResourcePref resources[] = {
   { "color5", STRING, &termcol5 },
   { "color6", STRING, &termcol6 },
   { "color7", STRING, &termcol7 },
+  { "color10", STRING, &termcol10 },
 };
 
 #include <X11/XF86keysym.h>
