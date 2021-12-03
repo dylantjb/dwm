@@ -139,7 +139,7 @@ static const char *browsercmd[]  = { "sh", "-c", "$BROWSER", NULL };
 static const char *powercmd[]    = { "rofi", "-show", "p", "-modi", "p:rofi-power-menu", "-width", "20", 
                                      "-lines", "5", NULL };
 
-static const char *rotatewal[]   = { "wallpaper", NULL };
+static const char *rotatewal[]   = { "sh", "-c", "feh --no-fehbg --bg-fill -r -z ~/pictures/wallpapers/*", NULL };
 static const char *lfcmd[]       = { TERMINAL, "-e", "lf", NULL };
 static const char *newsboat[]    = { TERMINAL, "-e", "newsboat", NULL };
 static const char *emacs[]       = { "sh", "-c", "em", NULL };
