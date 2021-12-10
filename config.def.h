@@ -144,6 +144,7 @@ static const char *lfcmd[]       = { TERMINAL, "-e", "lf", NULL };
 static const char *newsboat[]    = { TERMINAL, "-e", "newsboat", NULL };
 static const char *emacs[]       = { "sh", "-c", "em", NULL };
 static const char *mu4e[]        = { "sh", "-c", "emacsclient -c -e '(mu4e)'", NULL };
+static const char *capture[]     = { "sh", "-c", "org-capture -k i", NULL };
 static const char *dunsthist[]   = { "dunstctl", "history-pop", NULL };
 static const char *dunstclose[]  = { "dunstctl", "close-all", NULL };
 static const char *notifyctl[]   = { "notifyctl", "toggle", NULL };
@@ -235,7 +236,8 @@ static Key keys[] = {
   { MODKEY|ShiftMask, XK_d,          spawn,           {.v = j4menucmd} },
   { MODKEY,           XK_z,          incrgaps,        {.i = +3} },
   { MODKEY,           XK_x,          incrgaps,        {.i = -3} },
-  { MODKEY,           XK_c,          togglebar,       {0} },
+  { MODKEY,           XK_c,          spawn,           {.v = capture} },
+  { MODKEY|ShiftMask, XK_c,          togglebar,       {0} },
   { MODKEY,           XK_space,      zoom,            {0} },
   { MODKEY|ShiftMask, XK_space,      togglefloating,  {0} },
 
