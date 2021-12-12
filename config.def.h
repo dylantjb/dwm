@@ -8,6 +8,7 @@
 /* appearance */
 static unsigned int borderpx  = 2;
 static unsigned int snap      = 16;
+static const int swallowfloating = 0;
 static int showbar            = 1;
 static int topbar             = 1;
 static int smartgaps          = 0;
@@ -79,10 +80,10 @@ static const Rule rules[] = {
    *  WM_CLASS(STRING) = instance, class
    *  WM_NAME(STRING) = title
    */
-  /* class      instance    title       tags mask     isfloating   monitor */
-  { TERMCLASS,  NULL,       NULL,           0,            0,         -1 },
-  { NULL,       NULL,       "Event Tester", 0,            0,         -1 },
-  { NULL,       NULL,       "SafeEyes-0",   0,            1,         -1 },
+  /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+  { TERMCLASS, NULL,     NULL,           0,         0,          1,           0,        -1 },
+  { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 },
+  { NULL,      NULL,     "SafeEyes-0",   0,         1,          0,           0,        -1 },
 };
 
 /* layout(s) */
