@@ -81,9 +81,9 @@ static const Rule rules[] = {
    *  WM_NAME(STRING) = title
    */
   /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-  { TERMCLASS, NULL,     NULL,           0,         0,          1,           0,        -1 },
-  { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 },
-  { NULL,      NULL,     "SafeEyes-0",   0,         1,          0,           0,        -1 },
+  { TERMCLASS, NULL,     NULL,           0,         0,          1,          0,        -1 },
+  { NULL,      NULL,     "Event Tester", 0,         0,          0,          1,        -1 },
+  { NULL,      NULL,     "SafeEyes-0",   0,         1,          0,          0,        -1 },
 };
 
 /* layout(s) */
@@ -144,7 +144,7 @@ static const char *rotatewal[]   = { "sh", "-c", "feh --no-fehbg --bg-fill -r -z
 static const char *lfcmd[]       = { TERMINAL, "-e", "lf", NULL };
 static const char *newsboat[]    = { TERMINAL, "-e", "newsboat", NULL };
 static const char *emacs[]       = { "sh", "-c", "em", NULL };
-static const char *mu4e[]        = { "sh", "-c", "emacsclient -c -e '(mu4e)'", NULL };
+static const char *mu4e[]        = { "sh", "-c", "em -ce '(mu4e)'", NULL };
 static const char *capture[]     = { "sh", "-c", "org-capture -k i", NULL };
 static const char *dunsthist[]   = { "dunstctl", "history-pop", NULL };
 static const char *dunstclose[]  = { "dunstctl", "close-all", NULL };
